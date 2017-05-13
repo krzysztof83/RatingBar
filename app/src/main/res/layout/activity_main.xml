@@ -26,31 +26,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
-                    android:gravity="center"
-                    android:text="@string/app_name"
-                    android:textSize="20dp" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textSize="20dp" />
 
                 <Button
-                    android:id="@+id/addContactButton"
-                    android:layout_marginRight="20dp"
-                    android:layout_alignParentRight="true"
-                    android:gravity="right"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/account_plus" />
+                android:id="@+id/addContactButton"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentRight="true"
+                android:gravity="right"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/account_plus" />
 
                 <Button
-                    android:id="@+id/addAllContactButton"
-                    android:layout_marginRight="20dp"
-                    android:layout_toLeftOf="@id/addContactButton"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/account_multiple_plus" />
+                android:id="@+id/addAllContactButton"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@id/addContactButton"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/account_multiple_plus" />
+
+
 
             </RelativeLayout>
         </android.support.v7.widget.Toolbar>

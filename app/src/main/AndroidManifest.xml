@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name=".contentProvider.PersonContentProvider"
+            android:authorities="com.example.rc.samples.contentProvider" >
+        </provider>
+
     </application>
 
 </manifest>

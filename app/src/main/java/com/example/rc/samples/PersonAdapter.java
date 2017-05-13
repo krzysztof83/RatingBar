@@ -3,14 +3,14 @@ package com.example.rc.samples;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
+import com.example.rc.samples.contentProvider.PersonContentProvider;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import models.Person;
@@ -27,12 +27,8 @@ public class PersonAdapter extends CursorAdapter {
     @BindView(R.id.ratingBar)
     protected RatingBar ratingBar;
 
-    private SQLiteDatabase db;
-
-
-    public PersonAdapter(Context context, Cursor c, SQLiteDatabase db) {
+    public PersonAdapter(Context context, Cursor c) {
         super(context, c, 0);
-        this.db = db;
     }
 
     @Override
@@ -43,7 +39,7 @@ public class PersonAdapter extends CursorAdapter {
     }
 
     @Override
-    public void bindView(View view, Context context, Cursor c) {
+    public void bindView(View view, final Context context, Cursor c) {
         ButterKnife.bind(this, view);
         name.setText(c.getString(c.getColumnIndex(Person.NAME)));
         ratingBar.setRating((float) c.getDouble(c.getColumnIndex(Person.RATING)));
@@ -55,18 +51,12 @@ public class PersonAdapter extends CursorAdapter {
                 if (ifNotInit) {
                     ContentValues values = new ContentValues();
                     values.put(Person.RATING, String.valueOf(rating));
-                    db.update(Person.TABLE_NAME, values, Person.ID + "=?", new String[]{String.valueOf(ratingBar.getTag())});
-
-                    Cursor newCoursor = db.query(
-                            Person.TABLE_NAME,
-                            null,
-                            null,
-                            null,
-                            null,
+                    context.getContentResolver().update(
+                            Uri.parse(PersonContentProvider.CONTENT_URI+"/"+ ratingBar.getTag()),
+                            values,
                             null,
                             null
                     );
-                    swapCursor(newCoursor);
                 }
             }
         });
